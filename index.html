@@ -8,19 +8,15 @@
     <script src="js/autocomplete.js"></script>
 </head>
 <body>
-    <div>
-        <div>
-
-        </div>
-        <div ng-controller="AutocompleteCtrl">
-            <input type="text" ng-model="queryText" ng-keypress="query()"
-                   placeholder="Add some artists">
-            <ul>
-                <li ng-repeat="result in results">
-                    <span>{{result.username}}</span>
-                </li>
-            </ul>
-        </div>
+    <div class="wrapper create-channel" ng-controller="CreateChannel">
+        <input type="text" ng-model="channelName" placeholder="Name your playlist">
+        <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
+        <div class="loading" ng-show="queries">Loading...</div>
+        <ul>
+            <li ng-repeat="result in results" ng-class="{selected: result.selected}">
+                <span>{{result.username}}</span>
+            </li>
+        </ul>
     </div>
 
 <!--Vendor Scripts-->

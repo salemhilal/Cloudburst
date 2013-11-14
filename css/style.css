@@ -1,0 +1,17 @@
+body {
+  font-family: "Helvetica Neue" Helvetica Arial sans-serif; }
+
+.wrapper {
+  max-width: 700px;
+  position: relative;
+  margin: 0 auto; }
+
+.create-channel input {
+  font-size: 18px;
+  line-height: 24px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 30px;
+  padding: 0 5px; }
+.create-channel .selected {
+  font-weight: bold; }
