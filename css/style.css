@@ -13,5 +13,18 @@ body {
   width: 100%;
   margin-top: 30px;
   padding: 0 5px; }
+.create-channel .autocomplete {
+  margin: 0;
+  padding: 0; }
+  .create-channel .autocomplete li {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    list-style: none;
+    line-height: 15px;
+    border-bottom: 1px solid #ccc; }
+  .create-channel .autocomplete li:hover {
+    background-color: #efefef; }
 .create-channel .selected {
   font-weight: bold; }

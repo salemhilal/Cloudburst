@@ -1,29 +1,21 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="channelsApp">
 <head>
     <title></title>
     <link rel="stylesheet" href="css/style.css"/>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-    <script src="js/autocomplete.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular-route.min.js"></script>
 </head>
 <body>
-    <div class="wrapper create-channel" ng-controller="CreateChannel">
-        <input type="text" ng-model="channelName" placeholder="Name your playlist">
-        <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
-        <div class="loading" ng-show="queries">Loading...</div>
-        <ul>
-            <li ng-repeat="result in results" ng-class="{selected: result.selected}">
-                <span>{{result.username}}</span>
-            </li>
-        </ul>
-    </div>
+    <div ng-view></div>
 
 <!--Vendor Scripts-->
 <script src="vendor/lodash.js"></script>
-<script src=" "></script>
+<script src="vendor/jquery-2.0.3.js"></script>
+<script src="vendor/soundcloud.js"></script>
 
 <!--App Scripts-->
+<script src="js/controllers.js"></script>
 <script src="js/app.js"></script>
 
 </body>

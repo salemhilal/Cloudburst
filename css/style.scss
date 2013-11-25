@@ -18,6 +18,25 @@ body {
     padding: 0 5px;
   }
 
+  .autocomplete {
+
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding-bottom: 10px;
+      padding-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      list-style: none;
+      line-height: 15px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    li:hover {
+      background-color: #efefef;
+    }
+  }
   .selected {
     font-weight: bold;
   }
