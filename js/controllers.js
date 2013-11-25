@@ -37,8 +37,7 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
 
 
             // Temporary local testing code.
-            // TODO: Remove later.
-            setTimeout(function(){
+            /*setTimeout(function(){
                 $scope.$apply(function(){
                     $scope.queries = false;
                     $scope.results = (["Entry 1", "Entry 2", "Entry 3", "Entry 4", "Entry 5"]).map(function(e){
@@ -46,25 +45,25 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
                     })
                     $scope.selected = 0;
                 });
-            }, 200);
+            }, 200);*/
 
             // Query soundcloud based on what's in the text box.
-            /*        SC.get('/users', { q: query }, function(users) {
-             console.log(users);
-             $scope.$apply(function() {
-             $scope.queries = false;
+            SC.get('/users', { q: query }, function(users) {
+                console.log(users);
+                $scope.$apply(function() {
+                    $scope.queries = false;
 
-             // Clear results
-             $scope.results = [];
+                    // Clear results
+                    $scope.results = [];
 
-             if(users.length === 0)
-             return;
+                    if(users.length === 0)
+                    return;
 
-             // Populate with new ones
-             $scope.results = users.slice(0, suggestionCount);
-             $scope.results[0].selected = true;
-             });
-             });*/
+                    // Populate with new ones
+                    $scope.results = users.slice(0, suggestionCount);
+                    $scope.results[0].selected = true;
+                });
+            });
         }, debounceWait);
 
         // Next item
