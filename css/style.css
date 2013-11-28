@@ -6,6 +6,9 @@ body {
   position: relative;
   margin: 0 auto; }
 
+.remove {
+  cursor: pointer; }
+
 .create-channel input {
   font-size: 18px;
   line-height: 24px;

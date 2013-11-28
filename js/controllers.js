@@ -20,7 +20,7 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
         // List of artists
         $scope.artists = [];
 
-        $scope.queries = false;
+        $scope.isQuerying = false;
 
         var autocomplete = _.debounce(function() {
             var query = $scope.queryText ? $scope.queryText.trim() : "";
@@ -29,7 +29,7 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
             // No sense querying if there's nothing to query.
             if(query.length === 0) {
                 $scope.$apply(function() {
-                    $scope.queries = false;
+                    $scope.isQuerying = false;
                     $scope.results = [];
                 });
                 return;
@@ -51,7 +51,7 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
             SC.get('/users', { q: query }, function(users) {
                 console.log(users);
                 $scope.$apply(function() {
-                    $scope.queries = false;
+                    $scope.isQuerying = false;
 
                     // Clear results
                     $scope.results = [];
@@ -77,12 +77,27 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
 
         // Select @item from the autocomplete list
         $scope.selectItem = function(item) {
+            // Don't select anything if we're querying.
+            if($scope.isQuerying){
+                return;
+            }
+
+            // Don't add duplicates
+            if($scope.artists.indexOf($scope.results[$scope.selected]) != -1){
+                return;
+            }
             // Ensure the correct one is bolded.
             $scope.selected = item;
             console.log("Selected this item:", $scope.results[item]);
 
             // Add selected element to artist list
-            $scope.artists.push()
+            $scope.artists.push($scope.results[$scope.selected]);
+
+        }
+
+        $scope.removeItem = function(item) {
+            console.log("Remove item", $scope.artists[item]);
+            $scope.artists.splice(item, 1);
         }
 
         // Handles keypresses in the autocomplete textbox.
@@ -111,7 +126,7 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
             if(code == 8 || (code >= 48 && code <= 90)) {
                 console.log("Clearing results");
                 $scope.results = [];
-                $scope.queries = true;
+                $scope.isQuerying = true;
                 autocomplete();
             }
 

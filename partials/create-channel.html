@@ -1,10 +1,15 @@
 <div class="wrapper create-channel">
     <input type="text" ng-model="channelName" placeholder="Name your playlist">
     <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
-    <div class="loading" ng-show="queries">Loading...</div>
+    <div class="loading" ng-show="isQuerying">Loading...</div>
     <ul class="autocomplete">
         <li ng-repeat="result in results" ng-class="{selected: $index == selected}" ng-click="selectItem($index)">
             <span>{{result.username}}</span>
+        </li>
+    </ul>
+    <ul class="selected">
+        <li  ng-repeat="artist in artists">
+            {{artist.username}} | <span class="remove" ng-click="removeItem($index)">&times;</span>
         </li>
     </ul>
 </div>
