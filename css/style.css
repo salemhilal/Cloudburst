@@ -6,8 +6,15 @@ body {
   position: relative;
   margin: 0 auto; }
 
-.remove {
+.remove, .autocomplete li {
   cursor: pointer; }
+
+.loading {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+  padding: 10px; }
 
 .create-channel {
   -webkit-touch-callout: none;
@@ -38,15 +45,15 @@ body {
       background-color: #efefef; }
   .create-channel .selected {
     font-weight: bold; }
-  .create-channel .artists ul {
+  .create-channel .artists {
     list-style: none;
     margin: 0;
     padding: 0; }
-  .create-channel .artists li {
-    display: inline-block;
-    padding: 5px;
-    background-color: #ccc;
-    border-radius: 5px;
-    font-size: 10px;
-    text-transform: uppercase;
-    margin: 5px; }
+    .create-channel .artists li {
+      display: inline-block;
+      padding: 5px;
+      background-color: #ccc;
+      border-radius: 5px;
+      font-size: 10px;
+      text-transform: uppercase;
+      margin: 5px; }

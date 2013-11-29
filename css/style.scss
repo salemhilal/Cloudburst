@@ -8,8 +8,16 @@ body {
   margin: 0 auto;
 }
 
-.remove {
+.remove, .autocomplete li {
   cursor: pointer;
+}
+
+.loading {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+  padding: 10px;
 }
 
 .create-channel {
@@ -52,10 +60,8 @@ body {
     font-weight: bold;
   }
   .artists {
-    ul {
-      list-style: none;
-      margin: 0; padding:0;
-    }
+    list-style: none;
+    margin: 0; padding:0;
     li {
       display: inline-block;
       padding: 5px;

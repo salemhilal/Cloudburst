@@ -5,7 +5,8 @@
 var channelsControllers = angular.module('channelsControllers', []);
 
 channelsControllers.controller("CreateChannelCtrl", ['$scope',
-    function($scope) {
+    function($scope, Data) {
+        console.log("Data!!!", Data);
         // How long to wait to send out autocomplete queries
         var debounceWait = 300;
         // Number of query results to display
@@ -21,6 +22,7 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
         $scope.artists = [];
 
         $scope.isQuerying = false;
+        $scope.failed = false;
 
         var autocomplete = _.debounce(function() {
             var query = $scope.queryText ? $scope.queryText.trim() : "";
@@ -35,34 +37,33 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
                 return;
             }
 
-
-            // Temporary local testing code.
-            /*setTimeout(function(){
-                $scope.$apply(function(){
-                    $scope.queries = false;
-                    $scope.results = (["Entry 1", "Entry 2", "Entry 3", "Entry 4", "Entry 5"]).map(function(e){
-                        return {username: e};
-                    })
-                    $scope.selected = 0;
-                });
-            }, 200);*/
-
             // Query soundcloud based on what's in the text box.
-            SC.get('/users', { q: query }, function(users) {
-                console.log(users);
-                $scope.$apply(function() {
-                    $scope.isQuerying = false;
+            SC.get('/users', { q: query }, function(users, error) {
 
-                    // Clear results
-                    $scope.results = [];
+                // See if something went horribly, horribly wrong.
+                if (error) {
+                    console.log("Error querying Soundcloud:", error.message);
 
-                    if(users.length === 0)
-                    return;
+                    // Release query lock
+                    $scope.$apply(function() {
+                        $scope.isQuerying = false;
+                        $scope.failed = true;
+                    });
+                } else {
+                    $scope.$apply(function() {
+                        $scope.isQuerying = false;
 
-                    // Populate with new ones
-                    $scope.results = users.slice(0, suggestionCount);
-                    $scope.results[0].selected = true;
-                });
+                        // Clear results
+                        $scope.results = [];
+
+                        if(users.length === 0)
+                            return;
+
+                        // Populate with new ones
+                        $scope.results = users.slice(0, suggestionCount);
+                        $scope.selected = 0;
+                    });
+                }
             });
         }, debounceWait);
 
@@ -93,7 +94,7 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
                 }
             }
             // Don't add duplicates
-            if(_.findIndex($scope.artists, f($scope.results[idx])) != -1){
+            if(_.findIndex($scope.artists, $scope.results[idx]) != -1){
                 return;
             }
 
@@ -111,7 +112,7 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
 
         // Handles keypresses in the autocomplete textbox.
         $scope.query = function(event) {
-
+            $scope.failed = false;
             var code = event.keyCode;
 
             // Filter out up arrow
@@ -131,7 +132,6 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
             }
             // Clear input if we pressed delete or an alphanumeric key
             // input = 8 (delete) or btn 48 - 90, inclusive (numbers and letters)
-            console.log(code);
             if(code == 8 || (code >= 48 && code <= 90)) {
                 console.log("Clearing results");
                 $scope.results = [];

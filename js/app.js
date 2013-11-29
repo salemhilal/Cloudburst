@@ -14,6 +14,10 @@ var channelsApp = angular.module('channelsApp', [
     'channelsControllers'
 ]);
 
+channelsApp.factory('Data', function(){
+    return { message: "I'm data from a service" };
+})
+
 channelsApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
@@ -24,4 +28,5 @@ channelsApp.config(['$routeProvider',
             otherwise({
                 redirectTo: '/new'
             });
-}]);
+    }
+]);
