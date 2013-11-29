@@ -9,25 +9,44 @@ body {
 .remove {
   cursor: pointer; }
 
-.create-channel input {
-  font-size: 18px;
-  line-height: 24px;
-  box-sizing: border-box;
-  width: 100%;
-  margin-top: 30px;
-  padding: 0 5px; }
-.create-channel .autocomplete {
-  margin: 0;
-  padding: 0; }
-  .create-channel .autocomplete li {
-    padding-bottom: 10px;
-    padding-top: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
+.create-channel {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .create-channel input {
+    font-size: 18px;
+    line-height: 24px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 5px; }
+  .create-channel .autocomplete {
+    margin: 0;
+    padding: 0; }
+    .create-channel .autocomplete li {
+      padding-bottom: 10px;
+      padding-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      list-style: none;
+      line-height: 15px;
+      border-bottom: 1px solid #ccc; }
+    .create-channel .autocomplete li:hover {
+      background-color: #efefef; }
+  .create-channel .selected {
+    font-weight: bold; }
+  .create-channel .artists ul {
     list-style: none;
-    line-height: 15px;
-    border-bottom: 1px solid #ccc; }
-  .create-channel .autocomplete li:hover {
-    background-color: #efefef; }
-.create-channel .selected {
-  font-weight: bold; }
+    margin: 0;
+    padding: 0; }
+  .create-channel .artists li {
+    display: inline-block;
+    padding: 5px;
+    background-color: #ccc;
+    border-radius: 5px;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin: 5px; }

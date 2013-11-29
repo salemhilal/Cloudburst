@@ -76,19 +76,28 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope',
         }
 
         // Select @item from the autocomplete list
-        $scope.selectItem = function(item) {
+        $scope.selectItem = function(idx) {
+            // Ensure the correct one is bolded / selected.
+            $scope.selected = idx;
+
             // Don't select anything if we're querying.
             if($scope.isQuerying){
+                console.log("Doing nothing, isQuerying == true")
                 return;
             }
 
+            // Equality checker to ensure we don't add duplicates
+            var f = function(match) {
+                return function(elem) {
+                    return elem.username == match.username;
+                }
+            }
             // Don't add duplicates
-            if($scope.artists.indexOf($scope.results[$scope.selected]) != -1){
+            if(_.findIndex($scope.artists, f($scope.results[idx])) != -1){
                 return;
             }
-            // Ensure the correct one is bolded.
-            $scope.selected = item;
-            console.log("Selected this item:", $scope.results[item]);
+
+            console.log("Selected this item:", $scope.results[idx]);
 
             // Add selected element to artist list
             $scope.artists.push($scope.results[$scope.selected]);
