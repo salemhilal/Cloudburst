@@ -2,7 +2,7 @@
     <input type="text" ng-model="channelName" placeholder="Name your playlist">
     <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
     <div class="loading" ng-show="isQuerying">Loading...</div>
-    <div class="loading" ng-show="failed">Could not contact Soundcloud.</div>
+    <div class="failed" ng-show="failed">Could not contact Soundcloud.</div>
     <ul class="autocomplete">
         <li ng-repeat="result in results" ng-class="{selected: $index == selected}" ng-click="selectItem($index)">
             <span>{{result.username}}</span>

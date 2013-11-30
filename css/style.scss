@@ -12,7 +12,7 @@ body {
   cursor: pointer;
 }
 
-.loading {
+.loading, .failed {
   display: block;
   text-align: center;
   font-style: italic;
@@ -20,8 +20,11 @@ body {
   padding: 10px;
 }
 
+.failed {
+  color: #cd566a;
+}
+
 .create-channel {
-  -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
