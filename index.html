@@ -7,6 +7,13 @@
     <script src="vendor/angular-route.min.js"></script>
 </head>
 <body>
+    <div ng-controller="ListChannelCtrl">
+        <ul>
+            <li ng-repeat="channel in list">
+                {{channel}}
+            </li>
+        </ul>
+    </div>
     <div ng-view></div>
 
     <!--Vendor Scripts-->
@@ -16,6 +23,7 @@
 
     <!--App Scripts-->
     <script src="js/controllers/channels-controller.js"></script>
+    <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/app.js"></script>
 
