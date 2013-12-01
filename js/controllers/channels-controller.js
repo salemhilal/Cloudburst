@@ -1,20 +1,12 @@
 /* Controller for creating new channels */
 
 function CreateChannelCtrl($scope, Data) {
-    console.log("Data!!!", Data);
-    // How long to wait to send out autocomplete queries
-    var debounceWait = 300;
-    // Number of query results to display
-    var suggestionCount = 8;
+    var debounceWait = 300;     // How long to wait to send out autocomplete queries
+    var suggestionCount = 8;    // Number of query results to display
 
-    // Autocomplete results
-    $scope.results = [];
-
-    // Currently selected result.
-    $scope.selected = 0;
-
-    // List of artists
-    $scope.artists = [];
+    $scope.results = [];        // Autocomplete results
+    $scope.selected = 0;        // Currently selected result.
+    $scope.artists = [];        // List of artists
 
     $scope.isQuerying = false;
     $scope.failed = false;
@@ -33,7 +25,7 @@ function CreateChannelCtrl($scope, Data) {
         }
 
         // Query soundcloud based on what's in the text box.
-        SC.get('/users', { q: query }, function(users, error) {
+/*        SC.get('/users', { q: query }, function(users, error) {
 
             // See if something went horribly, horribly wrong.
             if (error) {
@@ -59,7 +51,26 @@ function CreateChannelCtrl($scope, Data) {
                     $scope.selected = 0;
                 });
             }
-        });
+        });*/
+
+        // For testing purposes
+        setTimeout(function(){
+            $scope.$apply(function(){
+                $scope.isQuerying = false;
+                $scope.results = [
+                    {
+                        username: "Disclosure"
+                    },
+                    {
+                        username: "Pretty Lights"
+                    },
+                    {
+                        username: "The Knocks"
+                    }];
+            });
+        }, 300);
+
+
     }, debounceWait);
 
     // Next item
@@ -78,7 +89,7 @@ function CreateChannelCtrl($scope, Data) {
 
         // Don't select anything if we're querying.
         if($scope.isQuerying){
-            console.log("Doing nothing, isQuerying == true")
+            console.log("Doing nothing, isQuerying == true");
             return;
         }
 
@@ -137,11 +148,22 @@ function CreateChannelCtrl($scope, Data) {
 
     };
 
-    // What step we're on in input.
-    // 0 = Playlist Name
-    // 1 = Adding artists
-    // 2 = Re-editing name.
-    $scope.step = 0;
+    $scope.submit = function() {
+        if(!$scope.channelName || $scope.channelName.trim() === "") {
+            // TODO: Ugh, change these. Alerts are so awful.
+            alert("Name that channel!");
+            return;
+        }
+        if($scope.artists.length === 0) {
+            // TODO: Here too. I feel so dirty.
+            alert("Go find some artists!");
+            return;
+        }
 
-    $scope.editName = true;
+        $scope.$parent.channels.push({
+            name: $scope.channelName,
+            artists: $scope.artists.slice(0) // Clone the array. That'd be an annoying bug.
+        })
+    }
+
 }

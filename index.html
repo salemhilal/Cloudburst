@@ -7,14 +7,27 @@
     <script src="vendor/angular-route.min.js"></script>
 </head>
 <body>
-    <div ng-controller="ListChannelCtrl">
-        <ul>
-            <li ng-repeat="channel in list">
-                {{channel}}
-            </li>
-        </ul>
+    <!--Main app-->
+    <div ng-controller="ChannelCtrl">
+
+        <!--Sidebar / Channel List-->
+        <div>
+            <ul>
+                <li ng-repeat="channel in channels">
+                    {{channel.name}}
+                    <ul>
+                        <li ng-repeat="artist in channel.artists">
+                            {{artist.username}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!--Main view-->
+        <div ng-view></div>
+
     </div>
-    <div ng-view></div>
 
     <!--Vendor Scripts-->
     <script src="vendor/lodash.js"></script>
