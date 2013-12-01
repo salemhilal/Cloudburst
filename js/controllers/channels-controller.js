@@ -8,8 +8,8 @@ function CreateChannelCtrl($scope, Data) {
     $scope.selected = 0;        // Currently selected result.
     $scope.artists = [];        // List of artists
 
-    $scope.isQuerying = false;
-    $scope.failed = false;
+    $scope.isQuerying = false;  // true iff we're currently querying
+    $scope.failed = false;      // true iff the request has failed and a new query hasn't started.
 
     var autocomplete = _.debounce(function() {
         var query = $scope.queryText ? $scope.queryText.trim() : "";
@@ -73,6 +73,11 @@ function CreateChannelCtrl($scope, Data) {
 
     }, debounceWait);
 
+    /*---------------------------------
+     * Defines autocomplete result behavior
+     *---------------------------------
+     */
+
     // Next item
     var moveDn = function() {
         $scope.selected = Math.min($scope.selected + 1, $scope.results.length-1);
@@ -82,7 +87,7 @@ function CreateChannelCtrl($scope, Data) {
         $scope.selected = Math.max($scope.selected -1, 0);
     }
 
-    // Select @item from the autocomplete list
+    // Select the @idx item from the autocomplete list
     $scope.selectItem = function(idx) {
         // Ensure the correct one is bolded / selected.
         $scope.selected = idx;
@@ -111,12 +116,14 @@ function CreateChannelCtrl($scope, Data) {
 
     }
 
-    $scope.removeItem = function(item) {
-        console.log("Remove item", $scope.artists[item]);
-        $scope.artists.splice(item, 1);
+    // Remove the @idx item from the artists list
+    $scope.removeItem = function(idx) {
+        console.log("Remove item", $scope.artists[idx]);
+        $scope.artists.splice(idx, 1);
     }
 
     // Handles keypresses in the autocomplete textbox.
+    // TODO: Just keep track of the previous query, see if it's changed.
     $scope.query = function(event) {
         $scope.failed = false;
         var code = event.keyCode;
@@ -148,6 +155,10 @@ function CreateChannelCtrl($scope, Data) {
 
     };
 
+    // Validates the input and creates a channel.
+    // Clears input after.
+    // TODO: Redirect app to newly created channel.
+    // TODO: Put validation checks in another function.
     $scope.submit = function() {
         if(!$scope.channelName || $scope.channelName.trim() === "") {
             // TODO: Ugh, change these. Alerts are so awful.
@@ -163,7 +174,10 @@ function CreateChannelCtrl($scope, Data) {
         $scope.$parent.channels.push({
             name: $scope.channelName,
             artists: $scope.artists.slice(0) // Clone the array. That'd be an annoying bug.
-        })
+        });
+
+        $scope.channelName = "";
+        $scope.artists = [];
     }
 
 }
