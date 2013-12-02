@@ -67,7 +67,8 @@ body {
   margin: none; }
 .list-channels li {
   list-style: none;
-  padding: 5px; }
+  padding-top: 10px;
+  padding-botom: 10px; }
 .list-channels li:last-child {
   margin-top: 10px;
   border-top: 2px solid #efefef; }
