@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html ng-app="channelsApp">
 <head>
-    <title></title>
+
+    <title>Soundcloud | Channels</title>
+
+    <!--Styles-->
     <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/grids-min.css">
+
+    <!--Pre-loaded Scripts-->
     <script src="vendor/angular.min.js"></script>
     <script src="vendor/angular-route.min.js"></script>
+
 </head>
 <body>
+
     <!--Main app-->
-    <div ng-controller="ChannelCtrl">
+    <div class="pure-g-r wrapper" ng-controller="ChannelCtrl">
 
         <!--Sidebar / Channel List-->
-        <div>
-            <ul>
-                <li ng-repeat="channel in channels">
-                    {{channel.name}}
-                    <ul>
-                        <li ng-repeat="artist in channel.artists">
-                            {{artist.username}}
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <div class="pure-u-1-4" ng-include="'partials/list-channels.html'"></div>
 
         <!--Main view-->
-        <div ng-view></div>
+        <div class="pure-u-3-4" ng-view></div>
 
     </div>
 

@@ -2,9 +2,9 @@ body {
   font-family: "Helvetica Neue" Helvetica Arial sans-serif; }
 
 .wrapper {
-  max-width: 700px;
   position: relative;
-  margin: 0 auto; }
+  padding-left: 20px;
+  padding-right: 20px; }
 
 .remove, .autocomplete li {
   cursor: pointer; }
@@ -24,7 +24,8 @@ body {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  max-width: 800px; }
   .create-channel input {
     font-size: 18px;
     line-height: 24px;

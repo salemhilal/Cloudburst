@@ -25,7 +25,7 @@ function CreateChannelCtrl($scope, Data) {
         }
 
         // Query soundcloud based on what's in the text box.
-/*        SC.get('/users', { q: query }, function(users, error) {
+        SC.get('/users', { q: query }, function(users, error) {
 
             // See if something went horribly, horribly wrong.
             if (error) {
@@ -51,10 +51,10 @@ function CreateChannelCtrl($scope, Data) {
                     $scope.selected = 0;
                 });
             }
-        });*/
+        });
 
-        // For testing purposes
-        setTimeout(function(){
+        // For testing purposes. In case I don't have Wifi
+/*        setTimeout(function(){
             $scope.$apply(function(){
                 $scope.isQuerying = false;
                 $scope.results = [
@@ -68,7 +68,7 @@ function CreateChannelCtrl($scope, Data) {
                         username: "The Knocks"
                     }];
             });
-        }, 300);
+        }, 300);*/
 
 
     }, debounceWait);

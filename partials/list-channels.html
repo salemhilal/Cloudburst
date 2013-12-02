@@ -1,0 +1,10 @@
+<ul>
+    <li ng-repeat="channel in channels">
+        {{channel.name}}
+        <ul>
+            <li ng-repeat="artist in channel.artists">
+                {{artist.username}}
+            </li>
+        </ul>
+    </li>
+</ul>
