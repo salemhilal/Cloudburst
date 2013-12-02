@@ -79,3 +79,19 @@ body {
     }
   }
 }
+
+.list-channels {
+  ul {
+    box-sizing: border-box;
+    padding: 10px;
+    margin: none;
+  }
+  li {
+    list-style: none;
+    padding: 5px;
+  }
+  li:last-child {
+    margin-top: 10px;
+    border-top: 2px solid #efefef;
+  }
+}

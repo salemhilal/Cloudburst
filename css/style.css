@@ -60,3 +60,14 @@ body {
       font-size: 10px;
       text-transform: uppercase;
       margin: 5px; }
+
+.list-channels ul {
+  box-sizing: border-box;
+  padding: 10px;
+  margin: none; }
+.list-channels li {
+  list-style: none;
+  padding: 5px; }
+.list-channels li:last-child {
+  margin-top: 10px;
+  border-top: 2px solid #efefef; }
