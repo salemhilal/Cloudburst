@@ -18,12 +18,16 @@ var channelsApp = angular.module('channelsApp', [
 channelsApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/new', {
+            when('/channels/new', {
                 templateUrl: 'partials/create-channel.html',
                 controller: 'CreateChannelCtrl'
             }).
+            when('/channels/:channelId', {
+                templateUrl: 'partials/view-channel.html',
+                controller: 'ViewChannelCtrl'
+            }).
             otherwise({
-                redirectTo: '/new'
+                redirectTo: '/channels/new'
             });
     }
 ]);

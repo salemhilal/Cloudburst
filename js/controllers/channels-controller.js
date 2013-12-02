@@ -171,10 +171,18 @@ function CreateChannelCtrl($scope, Data) {
             return;
         }
 
-        $scope.$parent.channels.push({
+        var newChannel = {
+            idx: $scope.$parent.channels.length, // Reference to its own index
             name: $scope.channelName,
-            artists: $scope.artists.slice(0) // Clone the array. That'd be an annoying bug.
-        });
+            artists: $scope.artists.slice(0)     // Clone the array. That'd be an annoying bug.
+        }
+        $scope.$parent.channels.push(newChannel);
+
+        for(var i = 0; i < $scope.$parent.channels.length; i++) {
+            if($scope.$parent.channels[i].idx != i) {
+                console.error("IDX MISMATCH", $scope.$parent.channels, i);
+            }
+        }
 
         $scope.channelName = "";
         $scope.artists = [];
