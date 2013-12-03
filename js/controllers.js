@@ -11,11 +11,11 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
 channelsControllers.controller("CreateChannelCtrl", ['$scope', 'Data', '$sce', CreateChannelCtrl]);
 
 channelsControllers.controller("ViewChannelCtrl", ['$scope', 'Data', '$routeParams', '$location', '$sce', function($scope, Data, $routeParams, $location, $sce){
+    // Number of elements to increase the list by at a time.
+    var countInc = 8;
 
     // Get the channel for the view to make things easier.
     $scope.channel = $scope.$parent.channels[$routeParams.channelId];
-    // This is the list of tracks in this view.
-
 
     if($scope.channel == undefined) {
         console.log("Undefined channel, redirecting...")
@@ -23,6 +23,7 @@ channelsControllers.controller("ViewChannelCtrl", ['$scope', 'Data', '$routePara
         return;
     }
 
+    // This is the list of tracks in this view.
     $scope.channelTracks = $scope.channel.artists.map(function(artist) {
             return artist.tracks;
         }).reduce(function(a, b) {
@@ -30,6 +31,11 @@ channelsControllers.controller("ViewChannelCtrl", ['$scope', 'Data', '$routePara
         });
 
 
+    $scope.showCount = countInc;
+
+    $scope.increaseShowCount = function(){
+        $scope.showCount += countInc;
+    }
     console.log($scope.channel.artists);
 
 //    for(var i = 0; i < $scope.channel.artists.length; i++) {
