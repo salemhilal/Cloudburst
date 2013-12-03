@@ -1,9 +1,14 @@
+<!--
+View for creating a new channel
+-->
+
+
 <div class="create-channel">
     <h2>Create a new channel</h2>
-    <div class="inputForm">
-        <input type="text" ng-model="channelName" placeholder="Name your playlist">
-        <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
-    </div>
+
+    <input type="text" ng-model="channelName" placeholder="Name your playlist">
+    <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
+
     <div class="loading" ng-show="isQuerying">Loading...</div>
     <div class="failed" ng-show="failed">Could not contact Soundcloud.</div>
     <ul class="autocomplete">
