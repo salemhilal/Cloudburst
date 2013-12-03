@@ -1,9 +1,10 @@
 <div class="view-channel">
+    <h1>{{channel.name}}</h1>
     <ul>
         <li ng-repeat="track in channelTracks | orderBy:'-created_at' | limitTo:showCount">
             <div ng-bind-html="track.oembed.trustedHtml">{{track.oembed.trustedHtml}}</div>
         </li>
     </ul>
 
-    <span ng-click="increaseShowCount()">Show more tracks</span>
+    <span class="more" ng-click="increaseShowCount()">Show more tracks</span>
 </div>

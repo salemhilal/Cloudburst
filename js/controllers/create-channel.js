@@ -105,7 +105,7 @@ function CreateChannelCtrl($scope, Data, $sce) {
             }
         }
         // Don't add duplicates
-        if(_.findIndex($scope.artists, $scope.results[idx]) != -1){
+        if(_.findIndex($scope.artists, { 'username': $scope.results[idx].username }) != -1){
             return;
         }
 
@@ -113,20 +113,24 @@ function CreateChannelCtrl($scope, Data, $sce) {
 
         // Prefetch data and then add artist to list
         var newArtist = $scope.results[$scope.selected];
-        SC.get("/users/" + newArtist.id + "/tracks", function(results, error) {
+            SC.get("/users/" + newArtist.id + "/tracks", function(tracks, error) {
             if(error) {
                 console.error("ERROR GETTING TRACKS FOR " + artist.username, error);
                 return;
             }
-            newArtist.tracks = results;
+            newArtist.tracks = tracks;
             newArtist.tracks.forEach(function(track){
-                SC.oEmbed(track.permalink_url, {autoplay: false}, function(oembed){
+                SC.oEmbed(track.permalink_url, {autoplay: false}, function(oembed, error){
+                    if(error) {
+                        console.error("ERROR GETTING OEMBED FOR " +  newArtist.username + " " + track.title);
+                        return;
+                    }
                     $scope.$apply(function(){
                         console.log("Got some oembed stuff!");
                         track.oembed = oembed;
                         track.oembed.trustedHtml = $sce.trustAs($sce.HTML, track.oembed.html);
                     });
-                })
+                });
             });
         });
         $scope.artists.push(newArtist);

@@ -81,9 +81,15 @@ body {
 }
 
 .list-channels {
+
   ul {
     box-sizing: border-box;
-    padding: 10px;
+    padding: {
+      right: 20px;
+      top: 20px;
+      bottom: 20px;
+      left: 0;
+    }
     margin: none;
   }
   li {
@@ -100,5 +106,21 @@ body {
 .view-channel {
   li {
     list-style: none;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .more {
+    text-align: center;
+    cursor: pointer;
+    font-style: italic;
+    color: #ccc;
+    display: block;
+  }
+  .more:hover {
+    text-decoration: underline;
   }
 }
