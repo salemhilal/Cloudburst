@@ -1,5 +1,7 @@
 <div class="view-channel">
     <ul>
-        <li ng-repeat="artist in channel.artists">{{artist.username}}</li>
+        <li ng-repeat="track in channelTracks | orderBy:'-created_at'">
+            <div ng-bind-html="track.oembed.trustedHtml">{{track.oembed.trustedHtml}}</div>
+        </li>
     </ul>
 </div>
