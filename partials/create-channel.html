@@ -1,6 +1,9 @@
 <div class="create-channel">
-    <input type="text" ng-model="channelName" placeholder="Name your playlist">
-    <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
+    <h2>Create a new channel</h2>
+    <div class="inputForm">
+        <input type="text" ng-model="channelName" placeholder="Name your playlist">
+        <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
+    </div>
     <div class="loading" ng-show="isQuerying">Loading...</div>
     <div class="failed" ng-show="failed">Could not contact Soundcloud.</div>
     <ul class="autocomplete">
@@ -13,5 +16,5 @@
             {{artist.username}} | <span class="remove" ng-click="removeItem($index)">&times;</span>
         </li>
     </ul>
-    <button ng-click="submit()">Submit</button>
+    <button class="submit" ng-click="submit()">Submit</button>
 </div>

@@ -1,6 +1,6 @@
 /* Controller for creating new channels */
 
-function CreateChannelCtrl($scope, Data, $sce) {
+function CreateChannelCtrl($scope, Data, $location, $sce) {
     var debounceWait = 300;     // How long to wait to send out autocomplete queries
     var suggestionCount = 8;    // Number of query results to display
 
@@ -198,6 +198,8 @@ function CreateChannelCtrl($scope, Data, $sce) {
             artists: $scope.artists.slice(0)     // Clone the array. That'd be an annoying bug.
         }
         $scope.$parent.channels.push(newChannel);
+        console.log("Setting path to /channels/"  + newChannel.idx);
+        $location.path("/channels/" + newChannel.idx);
 
         for(var i = 0; i < $scope.$parent.channels.length; i++) {
             if($scope.$parent.channels[i].idx != i) {

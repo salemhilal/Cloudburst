@@ -8,6 +8,6 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
 }]);
 
 // For creation of new channels
-channelsControllers.controller("CreateChannelCtrl", ['$scope', 'Data', '$sce', CreateChannelCtrl]);
+channelsControllers.controller("CreateChannelCtrl", ['$scope', 'Data', '$location', '$sce', CreateChannelCtrl]);
 
 channelsControllers.controller("ViewChannelCtrl", ['$scope', 'Data', '$routeParams', '$location', '$sce', ViewChannelCtrl]);

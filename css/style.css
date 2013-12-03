@@ -1,5 +1,15 @@
-body {
-  font-family: "Helvetica Neue" Helvetica Arial sans-serif; }
+h2 {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Garuda, Verdana, Tahoma, sans-serif;
+  font-weight: 100;
+  font-size: 18px;
+  margin: 30px 0;
+  color: #999; }
+
+body,
+.pure-g [class*="pure-u"],
+.pure-g-r [class*="pure-u"] {
+  /* Font stack to make Pure.io's grids happy */
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Garuda, Verdana, Tahoma, sans-serif; }
 
 .wrapper {
   position: relative;
@@ -20,19 +30,69 @@ body {
   color: #cd566a; }
 
 .create-channel {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Garuda, Verdana, Tahoma, sans-serif;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   max-width: 800px; }
+  .create-channel .submit {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    display: inline-block;
+    position: relative;
+    height: 26px;
+    padding: 2px 10px;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(235, 235, 235, 0.3) 60%, rgba(225, 225, 225, 0.6));
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(235, 235, 235, 0.3) 60%, rgba(225, 225, 225, 0.6));
+    cursor: pointer;
+    overflow: hidden;
+    color: #333;
+    text-shadow: 0 1px 0 #fff;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+    font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+    font-weight: 100;
+    text-align: center;
+    vertical-align: baseline;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), inset 0 1px 0 white, inset -1px 0 0 white, inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 1px 0 0 white; }
+  .create-channel .submit:hover {
+    color: #333;
+    outline: 0;
+    background-color: #f9f9f9;
+    border-color: rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.13) rgba(0, 0, 0, 0.23);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), inset 0 1px 0 white, inset -1px 0 0 #f8f8f8, inset 0 -1px 0 rgba(248, 248, 248, 0.5), inset 1px 0 0 #f8f8f8;
+    text-shadow: -1px -1px 0 #fcfcfc,1px -1px 0 #fcfcfc,-1px 1px 0 #fcfcfc,1px 1px 0 #fff; }
   .create-channel input {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 24px;
     box-sizing: border-box;
     width: 100%;
-    margin-top: 30px;
-    padding: 0 5px; }
+    margin-bottom: 30px;
+    color: #666;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 7px;
+    font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+    font-weight: 100;
+    background: rgba(255, 255, 255, 0.9);
+    text-shadow: none;
+    box-shadow: 0 1px 0 rgba(34, 25, 25, 0.3), inset 0 1px 0 rgba(34, 25, 25, 0.3);
+    border-left: 1px solid rgba(34, 25, 25, 0.3);
+    border-right: 1px solid rgba(34, 25, 25, 0.3); }
   .create-channel .autocomplete {
     margin: 0;
     padding: 0; }
@@ -50,7 +110,10 @@ body {
     font-weight: bold; }
   .create-channel .artists {
     list-style: none;
-    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
     padding: 0; }
     .create-channel .artists li {
       display: inline-block;
@@ -61,20 +124,31 @@ body {
       text-transform: uppercase;
       margin: 5px; }
 
-.list-channels ul {
-  box-sizing: border-box;
-  padding-right: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 0;
-  margin: none; }
-.list-channels li {
-  list-style: none;
-  padding-top: 10px;
-  padding-botom: 10px; }
-.list-channels li:last-child {
-  margin-top: 10px;
-  border-top: 2px solid #efefef; }
+.list-channels {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Garuda, Verdana, Tahoma, sans-serif; }
+  .list-channels ul {
+    box-sizing: border-box;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 0;
+    margin: none; }
+  .list-channels li {
+    list-style: none;
+    padding-top: 10px;
+    padding-botom: 10px; }
+    .list-channels li a {
+      font-size: 14px;
+      color: #777;
+      text-decoration: none; }
+    .list-channels li a:hover {
+      text-decoration: underline; }
+  .list-channels li:last-child {
+    margin-top: 10px;
+    border-top: 2px solid #efefef; }
+  .list-channels li:last-child:before {
+    content: '+';
+    color: #777; }
 
 .view-channel li {
   list-style: none; }
@@ -86,6 +160,8 @@ body {
   cursor: pointer;
   font-style: italic;
   color: #ccc;
-  display: block; }
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px; }
 .view-channel .more:hover {
   text-decoration: underline; }
