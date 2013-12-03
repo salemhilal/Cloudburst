@@ -1,6 +1,6 @@
 /* Controller for creating new channels */
 
-function CreateChannelCtrl($scope, Data) {
+function CreateChannelCtrl($scope, Data, $sce) {
     var debounceWait = 300;     // How long to wait to send out autocomplete queries
     var suggestionCount = 8;    // Number of query results to display
 
@@ -111,8 +111,25 @@ function CreateChannelCtrl($scope, Data) {
 
         console.log("Selected this item:", $scope.results[idx]);
 
-        // Add selected element to artist list
-        $scope.artists.push($scope.results[$scope.selected]);
+        // Prefetch data and then add artist to list
+        var newArtist = $scope.results[$scope.selected];
+        SC.get("/users/" + newArtist.id + "/tracks", function(results, error) {
+            if(error) {
+                console.error("ERROR GETTING TRACKS FOR " + artist.username, error);
+                return;
+            }
+            newArtist.tracks = results;
+            newArtist.tracks.forEach(function(track){
+                SC.oEmbed(track.permalink_url, {autoplay: false}, function(oembed){
+                    $scope.$apply(function(){
+                        console.log("Got some oembed stuff!");
+                        track.oembed = oembed;
+                        track.oembed.trustedHtml = $sce.trustAs($sce.HTML, track.oembed.html);
+                    });
+                })
+            });
+        });
+        $scope.artists.push(newArtist);
 
     }
 
