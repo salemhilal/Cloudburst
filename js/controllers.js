@@ -12,4 +12,4 @@ channelsControllers.controller("CreateChannelCtrl", ['$scope', 'Data', '$locatio
 
 channelsControllers.controller("ViewChannelCtrl", ['$scope', 'Data', '$routeParams', '$location', '$sce', ViewChannelCtrl]);
 
-channelsControllers.controller("AutocompleteCtrl", ['$scope', 'Data', AutocompleteCtrl])
+channelsControllers.controller("AutocompleteCtrl", ['$scope', 'Data', '$location', '$sce', AutocompleteCtrl])

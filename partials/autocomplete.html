@@ -2,18 +2,19 @@
 Adds an autocomplete form to the page. Used in creating new channels, updating old ones, etc.
 Queries Soundcloud for artists.
 -->
+<div ng-controller="AutocompleteCtrl">
+    <input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
 
-<input type="text" ng-model="queryText" ng-keyup="query($event)" placeholder="Add some artists">
-
-<div class="loading" ng-show="isQuerying">Loading...</div>
-<div class="failed" ng-show="failed">Could not contact Soundcloud.</div>
-<ul class="autocomplete">
-    <li ng-repeat="result in results" ng-class="{selected: $index == selected}" ng-click="selectItem($index)">
-        <span>{{result.username}}</span>
-    </li>
-</ul>
-<ul class="artists">
-    <li  ng-repeat="artist in artists">
-        {{artist.username}} | <span class="remove" ng-click="removeItem($index)">&times;</span>
-    </li>
-</ul>
+    <div class="loading" ng-show="isQuerying">Loading...</div>
+    <div class="failed" ng-show="failed">Could not contact Soundcloud.</div>
+    <ul class="autocomplete">
+        <li ng-repeat="result in results" ng-class="{selected: $index == selected}" ng-click="selectItem($index)">
+            <span>{{result.username}}</span>
+        </li>
+    </ul>
+    <ul class="artists">
+        <li  ng-repeat="artist in artists">
+            {{artist.username}} | <span class="remove" ng-click="removeItem($index)">&times;</span>
+        </li>
+    </ul>
+</div>
