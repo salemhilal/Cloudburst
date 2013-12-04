@@ -68,16 +68,16 @@ button:hover {
 .header {
   padding: 20px;
   background-color: #333; }
-  .header .login, .header .user {
+  .header .login, .header .user, .header .logging-in {
     font-size: 14px;
     color: #999;
     font-style: italic; }
-    .header .login span, .header .login a, .header .user span, .header .user a {
+    .header .login span, .header .login a, .header .user span, .header .user a, .header .logging-in span, .header .logging-in a {
       text-decoration: none;
       cursor: pointer;
       font-style: normal;
       color: white; }
-    .header .login span:hover, .header .login a:hover, .header .user span:hover, .header .user a:hover {
+    .header .login span:hover, .header .login a:hover, .header .user span:hover, .header .user a:hover, .header .logging-in span:hover, .header .logging-in a:hover {
       text-decoration: underline; }
 
 .create-channel {

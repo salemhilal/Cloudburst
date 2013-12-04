@@ -23,10 +23,10 @@
                 <div class="user" ng-show="user">
                     <a href="{{user.permalink_url}}">Hej, {{user.username}}</a>
                 </div>
-                <div class="loggingIn" ng-show="loggingIn">
-                    <span></span>
+                <div class="logging-in" ng-show="loggingIn">
+                    <span>Logging in...</span>
                 </div>
-                <div class="login" ng-hide="user && !loggingIn">
+                <div class="login" ng-hide="user || loggingIn">
                     <span ng-click="login()">Login with Soundcloud</span> to search for people you follow.
                 </div>
             </div>
