@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/pure-grids.min.css">
+    <script src="vendor/soundcloud.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+
 
 </head>
 <body>
@@ -16,8 +20,14 @@
     <div ng-controller="ChannelCtrl">
         <div class="pure-g-r">
             <div class="pure-u-1 header">
-                <div class="login" ng-hide="user">
-                    <span ng-click="login()">Login with Soundcloud</span> to save channels and load your own artists.
+                <div class="user" ng-show="user">
+                    <a href="{{user.permalink_url}}">Hej, {{user.username}}</a>
+                </div>
+                <div class="loggingIn" ng-show="loggingIn">
+                    <span></span>
+                </div>
+                <div class="login" ng-hide="user && !loggingIn">
+                    <span ng-click="login()">Login with Soundcloud</span> to search for people you follow.
                 </div>
             </div>
         </div>

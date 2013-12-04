@@ -86,17 +86,18 @@ button:hover {
   padding: 20px;
   background-color: #333;
 
-  .login {
+  .login, .user {
     font-size: 14px;
     color: #999;
     font-style: italic;
 
-    span {
+    span, a {
+      text-decoration: none;
       cursor: pointer;
       font-style: normal;
       color: white;
     }
-    span:hover {
+    span:hover, a:hover {
       text-decoration: underline;
     }
   }
@@ -133,7 +134,6 @@ button:hover {
     line-height: 24px;
     box-sizing: border-box;
     width: 100%;
-    margin-bottom: 30px;
     color: #666;
     outline: 0;
     border: 0;
@@ -149,6 +149,9 @@ button:hover {
       right: 1px solid rgba(34,25,25,.3);
     }
   }
+  .channel-name {
+    margin-bottom: 20px;
+  }
 
   .autocomplete {
 
@@ -163,6 +166,13 @@ button:hover {
       list-style: none;
       line-height: 15px;
       border-bottom: 1px solid #ccc;
+      font-size: 14px;
+
+      .permalink {
+        font-size: 10px;
+        color: #999;
+        font-style: italic;
+      }
     }
 
     li:hover {

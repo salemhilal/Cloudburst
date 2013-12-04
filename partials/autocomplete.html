@@ -8,8 +8,8 @@ Queries Soundcloud for artists.
     <div class="loading" ng-show="isQuerying">Loading...</div>
     <div class="failed" ng-show="failed">Could not contact Soundcloud.</div>
     <ul class="autocomplete">
-        <li ng-repeat="result in results" ng-class="{selected: $index == selected}" ng-click="selectItem($index)">
-            <span>{{result.username}}</span>
+        <li ng-repeat="result in results" ng-click="selectItem($index)">
+            <span class="username" ng-class="{selected: $index == selected}">{{result.username}}</span> <span class="permalink">({{result.permalink}})</span>
         </li>
     </ul>
     <ul class="artists">

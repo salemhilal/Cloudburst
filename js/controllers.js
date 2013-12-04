@@ -4,13 +4,18 @@ var channelsControllers = angular.module('channelsControllers', []);
 
 // Parent controller
 channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope, Data){
+    SC.initialize({
+        client_id: '124d98e7c716fd363f37574473ddf687',
+        redirect_uri: 'http://127.0.0.1:63342/Channels/index.html'
+    });
+
     $scope.channels = [];
 
     $scope.user = null;
 
     $scope.loggingIn = false; // True while in the process of querying all the user's stuff.
 
-    var pageSize = 100; // Number of elements to query at once. Max for SC is 200.
+    var pageSize = 200; // Number of elements to query at once. Max for SC is 200.
 
     function queryFollowings(page, me) {
         console.log("Requesting page " + page + " of user followings.");
@@ -18,6 +23,7 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
 
             // Catch errors.
             if(error) {
+                $scope.loggingIn = false;
                 console.error("Failed to request page " + page + " of user followings.");
                 return;
             }
@@ -25,6 +31,8 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
             // Are we done?
             if(followings.length == 0) {
                 $scope.$apply(function(){
+                    $scope.loggingIn = false;
+
                     console.log("Here's Johnny!", me);
                     $scope.user = me;
                 });
@@ -41,9 +49,11 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
 
 
     $scope.login = function() {
+        $scope.loggingIn = true;
         SC.connect(function(error){
             if(error) {
-                console.log("Error loggin in:", error);s
+                $scope.loggingIn = false;
+                console.log("Error loggin in:", error);
                 return;
             }
 
@@ -51,11 +61,11 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
             SC.get('/me', function(me, error) {
                 if(error) {
                     console.error("Error getting user info:", error);
+                    $scope.loggingIn = false;
                     return;
                 }
 
                 // Get user's followings.
-                // FIXME: In the future, do this in parallel. 
                 me.followings = [];
                 queryFollowings(0, me);
             });

@@ -1,16 +1,21 @@
 function AutocompleteCtrl($scope, Data, $location, $sce) {
-    var debounceWait = 300;     // How long to wait to send out autocomplete queries
-    var suggestionCount = 8;    // Number of query results to display
+    SC.initialize({
+        client_id: '124d98e7c716fd363f37574473ddf687',
+        redirect_uri: 'http://127.0.0.1:63342/Channels/index.html'
+    });
 
-    $scope.results = [];        // Autocomplete results
-    $scope.selected = 0;        // Currently selected result.
+    var debounceWait = 300;                         // How long to wait to send out autocomplete queries
+    var suggestionCount = 8;                        // Number of query results to display
+
+    $scope.results = [];                            // Autocomplete results
+    $scope.selected = 0;                            // Currently selected result.
     $scope.artists = $scope.$parent.artists;        // List of artists
 
     $scope.isQuerying = false;  // true iff we're currently querying
     $scope.failed = false;      // true iff the request has failed and a new query hasn't started.
 
     var autocomplete = _.debounce(function() {
-        var query = $scope.queryText ? $scope.queryText.trim() : "";
+        var query = $scope.queryText ? $scope.queryText.trim().toLowerCase() : "";
         console.log("Query", query);
 
         // No sense querying if there's nothing to query.
@@ -22,52 +27,48 @@ function AutocompleteCtrl($scope, Data, $location, $sce) {
             return;
         }
 
-        // Query soundcloud based on what's in the text box.
-        SC.get('/users', { q: query }, function(users, error) {
-
-            // See if something went horribly, horribly wrong.
-            if (error) {
-                console.log("Error querying Soundcloud:", error.message);
-
-                // Release query lock
-                $scope.$apply(function() {
-                    $scope.isQuerying = false;
-                    $scope.failed = true;
+        // Do we have an authenticated user? Then lets query his/her followings!
+        if($scope.user) {
+            console.log($scope.user.followings);
+            console.log("Querying user's followings");
+            $scope.$apply(function(){
+                $scope.results = _.filter($scope.user.followings, function(following){
+                    return following.username.toLowerCase().replace(/\s+/g, '').indexOf(query.replace(/\s+/g, '')) != -1;
                 });
-            } else {
-                $scope.$apply(function() {
-                    $scope.isQuerying = false;
+                $scope.isQuerying = false;
+            });
 
-                    // Clear results
-                    $scope.results = [];
+        } else {
+            console.log("Querying soundcloud users");
+            // Guess no one's logged in, query everything.
+            SC.get('/users', { q: query, limit: suggestionCount }, function(users, error) {
 
-                    if(users.length === 0)
-                        return;
+                // See if something went horribly, horribly wrong.
+                if (error) {
+                    console.log("Error querying Soundcloud:", error.message);
 
-                    // Populate with new ones
-                    $scope.results = users.slice(0, suggestionCount);
-                    $scope.selected = 0;
-                });
-            }
-        });
+                    // Release query lock
+                    $scope.$apply(function() {
+                        $scope.isQuerying = false;
+                        $scope.failed = true;
+                    });
+                } else {
+                    $scope.$apply(function() {
+                        $scope.isQuerying = false;
 
-        // For testing purposes. In case I don't have Wifi
-        /*        setTimeout(function(){
-         $scope.$apply(function(){
-         $scope.isQuerying = false;
-         $scope.results = [
-         {
-         username: "Disclosure"
-         },
-         {
-         username: "Pretty Lights"
-         },
-         {
-         username: "The Knocks"
-         }];
-         });
-         }, 300);*/
+                        // Clear results
+                        $scope.results = [];
 
+                        if(users.length === 0)
+                            return;
+
+                        // Populate with new ones
+                        $scope.results = users.slice(0, suggestionCount);
+                        $scope.selected = 0;
+                    });
+                }
+            });
+        }
 
     }, debounceWait);
 

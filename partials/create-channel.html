@@ -6,7 +6,7 @@ View for creating a new channel
 <div class="create-channel">
     <h2>Create a new channel</h2>
 
-    <input type="text" ng-model="channelName" placeholder="Name your playlist">
+    <input class="channel-name" type="text" ng-model="channelName" placeholder="Name your playlist">
     <div ng-include="'partials/autocomplete.html'"></div>
     <button class="submit" ng-click="submit()">Submit</button>
 </div>
