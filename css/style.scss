@@ -13,7 +13,7 @@ h2 {
 }
 
 
-body,
+body, span, p, a,
 .pure-g [class *= "pure-u"],
 .pure-g-r [class *= "pure-u"] {
   /* Font stack to make Pure.io's grids happy */
@@ -79,9 +79,28 @@ button:hover {
 
 
 /**
- * VIEWS - These are specific to views
+ * VIEWS - These are specific to views or page blocks.
  **/
 
+.header {
+  padding: 20px;
+  background-color: #333;
+
+  .login {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+
+    span {
+      cursor: pointer;
+      font-style: normal;
+      color: white;
+    }
+    span:hover {
+      text-decoration: underline;
+    }
+  }
+}
 
 .create-channel {
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Garuda, Verdana, Tahoma, sans-serif;

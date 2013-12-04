@@ -4,7 +4,6 @@ function ViewChannelCtrl($scope, Data, $routeParams, $location, $sce){
         console.log("Prefetching player for " + track.title);
         SC.oEmbed(track.permalink_url, {autoplay: false}, function(oembed){
             $scope.$apply(function(){
-                console.log("Got some oembed stuff!");
                 track.oembed = oembed;
                 track.oembed.trustedHtml = $sce.trustAs($sce.HTML, track.oembed.html);
             });
@@ -19,12 +18,11 @@ function ViewChannelCtrl($scope, Data, $routeParams, $location, $sce){
             SC.get("/users/" + artist.id + "/tracks", function(tracks, error){
                 tracks.forEach(function(track){
                     // Add them if they're not there yet.
-                    if(_.findIndex(artist.tracks, track) == -1) {
+                    if(_.findIndex(artist.tracks, {permalink_url : track.permalink_url}) == -1) {
+                        console.log(track.title + " by " + artist.username + " has been updated.");
                         artist.push(track);
                         // and also prefetch the player.
                         prefetchPlayer(track);
-                    } else {
-                        console.log("Track " + track.title + " is already present.");
                     }
                 });
             });

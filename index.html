@@ -13,15 +13,24 @@
 <body>
 
     <!--Main app-->
-    <div class="pure-g-r wrapper" ng-controller="ChannelCtrl">
+    <div ng-controller="ChannelCtrl">
+        <div class="pure-g-r">
+            <div class="pure-u-1 header">
+                <div class="login" ng-hide="user">
+                    <span ng-click="login()">Login with Soundcloud</span> to save channels and load your own artists.
+                </div>
+            </div>
+        </div>
+        <div class="pure-g-r wrapper">
+            <!--Sidebar / Channel List-->
+            <div class="pure-u-1-4" ng-include="'partials/list-channels.html'"></div>
 
-        <!--Sidebar / Channel List-->
-        <div class="pure-u-1-4" ng-include="'partials/list-channels.html'"></div>
+            <!--Main view-->
+            <div class="pure-u-3-4" ng-view></div>
 
-        <!--Main view-->
-        <div class="pure-u-3-4" ng-view></div>
-
+        </div>
     </div>
+
 
     <!--Vendor Scripts-->
     <script src="vendor/angular.min.js"></script>

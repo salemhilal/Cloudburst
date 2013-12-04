@@ -124,7 +124,7 @@ function AutocompleteCtrl($scope, Data, $location, $sce) {
                         return;
                     }
                     $scope.$apply(function(){
-                        console.log("Got some oembed stuff!", oembed);
+                        console.log("Prefetched player for " + track.title);
                         track.oembed = oembed;
                         track.oembed.trustedHtml = $sce.trustAs($sce.HTML, track.oembed.html);
                     });
