@@ -9,7 +9,26 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
         redirect_uri: 'http://127.0.0.1:63342/Channels/index.html'
     });
 
-    $scope.channels = [];
+    $scope.channels = []
+
+    var savedChannels = JSON.parse(localStorage.getItem("channels"));
+    console.log(savedChannels);
+    if(savedChannels) {
+        savedChannels.forEach(function(channel) {
+            delete channel.$$hashKey
+            channel.artists.forEach(function(artist){
+                delete artist.$$hashKey;
+                artist.tracks.forEach(function(track) {
+                    delete track.$$hashKey;
+                    delete track.oembed;
+                });
+            });
+            console.log("ADDING " + channel.name);
+            $scope.channels.push(channel);
+        });
+    }
+
+    console.log($scope.channels);
 
     $scope.user = null;
 
@@ -46,8 +65,6 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
         });
     }
 
-
-
     $scope.login = function() {
         $scope.loggingIn = true;
         SC.connect(function(error){
@@ -70,6 +87,10 @@ channelsControllers.controller("ChannelCtrl", ['$scope', 'Data', function($scope
                 queryFollowings(0, me);
             });
         });
+    }
+
+    $scope.logout = function() {
+        $scope.user = null;
     }
 
 }]);

@@ -21,7 +21,7 @@
         <div class="pure-g-r">
             <div class="pure-u-1 header">
                 <div class="user" ng-show="user">
-                    <a href="{{user.permalink_url}}">Hej, {{user.username}}</a>
+                    <a href="{{user.permalink_url}}">Hej, {{user.username}}</a> <span ng-click="logout()">(Logout)</span>
                 </div>
                 <div class="logging-in" ng-show="loggingIn">
                     <span>Logging in...</span>

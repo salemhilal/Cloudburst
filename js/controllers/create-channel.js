@@ -24,18 +24,24 @@ function CreateChannelCtrl($scope, Data, $location, $sce) {
             name: $scope.channelName,
             artists: $scope.artists.slice(0)     // Clone the array. That'd be an annoying bug.
         }
-        $scope.$parent.channels.push(newChannel);
-        console.log("Setting path to /channels/"  + newChannel.idx);
-        $location.path("/channels/" + newChannel.idx);
 
+        // Add new channel to list of channels.
+        $scope.$parent.channels.push(newChannel);
+
+        // Sanity check
         for(var i = 0; i < $scope.$parent.channels.length; i++) {
             if($scope.$parent.channels[i].idx != i) {
                 console.error("IDX MISMATCH", $scope.$parent.channels, i);
             }
         }
 
-        $scope.channelName = "";
-        $scope.artists = [];
+        // Update localstorage.
+        localStorage.setItem("channels", JSON.stringify($scope.$parent.channels));
+
+        // Redirect to new channel
+        console.log("Setting path to /channels/"  + newChannel.idx);
+        $location.path("/channels/" + newChannel.idx);
+
     }
 
 }
