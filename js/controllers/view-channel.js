@@ -67,9 +67,6 @@ function ViewChannelCtrl($scope, Data, $routeParams, $location, $sce){
     }
     init();
 
-
-
-
     $scope.showCount = countInc;
 
     $scope.increaseShowCount = function(){

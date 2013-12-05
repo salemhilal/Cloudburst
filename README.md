@@ -20,15 +20,19 @@ I follow into their respective groups.
 Installation
 ------------
 
-Lucky you, everything should be bundled and ready to go. Just throw the whole thing on a webserver and 
+Everything should be bundled and ready to go. Just throw the whole thing on a webserver and 
 navigate to index.html. At some point, I hope to turn this into a plugin and / or make it backed by some
 sort of service.
+
+If you want the ability to log in properly, you need to edit the configuration (at the top of controllers/channel.js)
+with the appropriate path to the callback url (callback.html in the root directory). You'll additionally need to edit the same setting in the app
+configuration on Soundcloud's app management page.
 
 
 Dependencies
 ------------
-
-So far, the app is leaning on the following libraries / SDK's:
- * Soundcloud
- * AngularJS
- * LoDash
+	
+The app is leaning on the following libraries / SDK's:
+ * [Soundcloud](http://developers.soundcloud.com/)
+ * [AngularJS](http://angularjs.org/)
+ * [LoDash](http://lodash.com/)

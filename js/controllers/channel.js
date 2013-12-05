@@ -2,7 +2,7 @@ function ChannelCtrl($scope, Data) {
     $scope.loggingIn = false; // True while in the process of querying all the user's stuff.
     $scope.channels = [];
 
-
+    // Soundcloud options
     var SCopts = {
         client_id: '124d98e7c716fd363f37574473ddf687',
         redirect_uri: 'http://127.0.0.1:63342/Channels/index.html'

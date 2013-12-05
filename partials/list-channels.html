@@ -5,7 +5,7 @@ View for listing all current channels.
 <div class="list-channels">
     <ul>
         <li ng-repeat="channel in channels">
-            <a href="#/channels/{{channel.idx}}">{{channel.name}}</a>
+            <a href="#/channels/{{$index}}">{{channel.name}}</a>
         </li>
         <li>
             <a href="#/channels/new">New channel</a>
